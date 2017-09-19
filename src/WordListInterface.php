@@ -1,6 +1,6 @@
 <?php
 
-namespace Barzo\Password;
+namespace HaiBrini\Password;
 
 /**
  * Interface for list containing words
