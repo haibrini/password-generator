@@ -1,6 +1,6 @@
 <?php
 
-namespace Barzo\Password;
+namespace HaiBrini\Password;
 
 /**
  * Password generator. Generates passwords from wordlist passed
