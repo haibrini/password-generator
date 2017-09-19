@@ -22,7 +22,7 @@ Via Composer
 ``` json
 {
     "require": {
-        "barzo/password-generator": "~0.4"
+        "haibrini/password-generator": "~0.4"
     }
 }
 ```
@@ -32,7 +32,7 @@ Via Composer
 Generate password with default length (4 words) and default separator (space).
 
 ``` php
-use Barzo\Password\Generator;
+use HaiBrini\Password\Generator;
 
 // would output something like "throat fast only idea"
 echo Generator::generateEn();
@@ -51,7 +51,7 @@ Each of above functions accepts length and separator paramenetrs.
 
 ``` php
 // would output something like "ritual-error-raise-arab-tail"
-echo Barzo\Password\Generator::generateEn(5, '-');
+echo HaiBrini\Password\Generator::generateEn(5, '-');
 ```
 
 ## Advanced usage
@@ -68,8 +68,8 @@ Example:
 ``` php
 echo Generator::generate(
     [
-        new Barzo\Password\WordList\En(), 
-        new Barzo\Password\WordList\RuTranslit()
+        new HaiBrini\Password\WordList\En(), 
+        new HaiBrini\Password\WordList\RuTranslit()
     ],
     5, 
     '-'
