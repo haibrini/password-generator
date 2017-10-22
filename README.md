@@ -9,7 +9,6 @@ Inspired by [xkcd comic](http://xkcd.com/936/), library generates phrases from f
 
 * English phrases (example "throat fast only idea")
 * German phrases (examle "laut welt ganze liter")
-* Russian phrases (example "тоже металл пора подача")
 * Russian transliterated phrases (example "kater nekiy zabrat dazhe")
 
 [Try online](http://denyspotapov.com/password/?en)
@@ -38,9 +37,6 @@ echo Generator::generateEn();
 
 // would output something like "laut welt ganze liter"
 echo Generator::generateDe();
-
-// would output something like "тоже металл пора подача"
-echo Generator::generateRu();
 
 // would output something like "kater nekiy zabrat dazhe"
 echo Generator::generateRuTranslit();
@@ -108,17 +104,6 @@ Class                                | Comment    | Word lenghth | Example
 **WordList\RuTranslit\Verbs**        | verbs      | 4-8          | moch, skazat
 **WordList\RuTranslit\Adjectives**   | adjectives | 4-8          | novyy, bolshoy
 
-### Russian
-
-Lists consist of 2048 most frequently used Russain words ([source](http://dict.ruslang.ru/freq.php)).
-
-Class                        | Comment    | Word lenghth | Example 
----------------------------- | -----------|--------------|---------------
-**WordList\Ru**              | all words  | 4-6          | быть, этот
-**WordList\Ru\Nouns**        | nouns      | 4-8          | человек, время
-**WordList\Ru\Verbs**        | verbs      | 4-8          | быть, мочь
-**WordList\Ru\Adjectives**   | adjectives | 4-8          | новый, большой
-
 ## Security
 
 If OpenSSL extension avaivable library would use [openssl_random_pseudo_bytes](http://php.net/manual/en/function.openssl-random-pseudo-bytes.php) for random number generation.
@@ -132,7 +117,6 @@ $ php vendor/bin/phpunit
 
 ### 0.4.0
 
-- Updated **WordList\Ru**. Now only words with length from 4 to 6
 - Updated **WordList\RuTranslit**. Now only words with length from 4 to 6
 - Added German words list
 
@@ -148,4 +132,4 @@ Pull requests are welcome.
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/denys-potapov/password-generator/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/haibrini/password-generator/blob/master/LICENSE) for more information.
