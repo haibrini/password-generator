@@ -1,16 +1,15 @@
 {
-    "name": "barzo/password-generator",
+    "name": "haibrini/password-generator",
     "description": "PHP library for generating easy to remember but hard to guess passwords",
     "keywords": [
         "password"
     ],
-    "homepage": "https://github.com/denys-potapov/password-generator",
+    "homepage": "https://github.com/haibrini/password-generator",
     "license": "MIT",
     "authors": [
         {
-            "name": "Denys Potapov",
-            "email": "denys.potapov@gmail.com",
-            "homepage": "http://denyspotapov.com"
+            "name": "Haithem Elrini",
+			"role": "Developer"
         }
     ],
     "suggest": {
@@ -21,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Barzo\\Password\\": ["src/", "tests/"]
+            "Haibrini\\Password\\": ["src/", "tests/"]
         }
     }
 }
