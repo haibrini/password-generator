@@ -1,6 +1,6 @@
 <?php
 
-namespace HaiBrini\Password;
+namespace Haibrini\Password;
 
 /**
  * Password generator. Generates passwords from wordlist passed
