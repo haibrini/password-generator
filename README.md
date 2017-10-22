@@ -20,7 +20,7 @@ Via Composer
 ``` json
 {
     "require": {
-        "haibrini/password-generator": "~0.4"
+        "haibrini/password-generator": "~0.5"
     }
 }
 ```
@@ -115,10 +115,9 @@ $ php vendor/bin/phpunit
 ```
 ## Changelog
 
-### 0.4.0
+### 0.5.0
 
-- Updated **WordList\RuTranslit**. Now only words with length from 4 to 6
-- Added German words list
+- Added option for uppercase/capitalize
 
 ## Contributing
 
