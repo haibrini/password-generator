@@ -1,8 +1,8 @@
 <?php
 
-namespace Barzo\Password\WordList\En;
+namespace Haibrini\Password\WordList\En;
 
-use Barzo\Password\WordList\StaticArray;
+use Haibrini\Password\WordList\StaticArray;
 
 /**
  * English adjectives word list.

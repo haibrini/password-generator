@@ -1,8 +1,8 @@
 <?php
 
-namespace Barzo\Password\WordList\RuTranslit;
+namespace Haibrini\Password\WordList\RuTranslit;
 
-use Barzo\Password\WordList\StaticArray;
+use Haibrini\Password\WordList\StaticArray;
 
 /**
  * Russian transliterated adjectives word list.

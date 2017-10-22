@@ -1,6 +1,6 @@
 <?php
 
-namespace Barzo\Password\WordList;
+namespace Haibrini\Password\WordList;
 
 /**
  * English word list.

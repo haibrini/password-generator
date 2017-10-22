@@ -1,8 +1,8 @@
 <?php
 
-namespace Barzo\Password\WordList;
+namespace Haibrini\Password\WordList;
 
-use Barzo\Password\WordListInterface;
+use Haibrini\Password\WordListInterface;
 
 /**
  * Word list stored in static array.
