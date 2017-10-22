@@ -89,11 +89,11 @@ class Generator
             $wordList = $wordLists[$index % $wordListsLength];
             switch ($uppercase) {
                 case 0:
-                    $words[] = $list->get($random);break;
+                    $words[] = $wordList->get($random);break;
                 case 1:
-                    $words[] = strtoupper($list->get($random));break;
+                    $words[] = strtoupper($wordList->get($random));break;
                 case 2:
-                    $words[] = ucfirst($list->get($random));break;
+                    $words[] = ucfirst($wordList->get($random));break;
             }
         }
 
