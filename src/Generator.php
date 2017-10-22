@@ -8,6 +8,8 @@ namespace Haibrini\Password;
  */
 class Generator
 {
+    const SYMBOLS = array('!', '@', '#', '$', '%', '&', '-', '=');
+
     /**
      * Get array of random numbers between 0.0 - 1.0
      * Uses openssl_random_pseudo_bytes as random funciton
@@ -63,6 +65,65 @@ class Generator
     }
 
     /**
+     * Get array of random numbers between 0 - 9
+     * Uses mt_rand as random funciton.
+     *
+     * @param  integer $length array length
+     * @return string string of random digits 0 - 9
+     */
+    public static function getMtRandomDigits($length)
+    {
+        $result = array();
+        foreach (range(1, $length) as $counter) {
+            $result[] = mt_rand(0, 9);
+        }
+
+        return implode('', $result);
+    }
+
+    /**
+     * Get array of random numbers between 0 - 9
+     * Uses openssl random generator if avaivable, mt_rand othervise
+     *
+     * @param  integer $length array length
+     * @return string string of random digits 0 - 9
+     */
+    public static function getRandomDigits($length)
+    {
+//        if (function_exists('openssl_random_pseudo_bytes')) {
+//            return self::getStrongRandomDigitsArray($length);
+//        }
+
+        return self::getMtRandomDigits($length);
+    }
+
+    /**
+     * Get a random symbol separator
+     *
+     * @return string random separator
+     */
+    public static function getRandomSeparator()
+    {
+        return self::SYMBOLS[mt_rand(0, count(self::SYMBOLS) - 1)];
+    }
+
+    /**
+     * Static function generates transliterated Russian phrase password
+     *
+     * Example "kater nekiy zabrat dazhe"
+     *
+     * @param  integer $lenght    password length (number of words). Default - 4
+     * @param  string  $separator word separator. Default ' ' (space)
+     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     *
+     * @return string  generated password
+     */
+    public static function generateRuTranslit($lenght = 4, $uppercase = 0, $digits = 0, $separator = ' ')
+    {
+        return self::generate(new WordList\RuTranslit(), $lenght, $uppercase, $digits, $separator);
+    }
+
+    /**
      * Static function to generate password from wordlists.
      *
      * If array of wordlist is shorter then length,
@@ -71,12 +132,13 @@ class Generator
      * @param  WordListInterface[] | WordListInterface
      *                           $wordLists array of word lists or word list
      * @param  integer $lenght    password length in words. Default - 4
-     * @param  string  $separator word separator. Default - ' '(space)
      * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     * @param  int     $digits    number of digits to be added at the end
+     * @param  string  $separator word separator. Default - ' '(space)
      *
      * @return string  generated password
      */
-    public static function generate($wordLists, $lenght = 4, $separator = ' ', $uppercase = 0)
+    public static function generate($wordLists, $lenght = 4, $uppercase = 0, $digits = 0, $separator = '')
     {
         if (!is_array($wordLists)) {
             $wordLists = array($wordLists);
@@ -97,23 +159,12 @@ class Generator
             }
         }
 
-        return join($separator, $words);
-    }
+        if ($digits > 0)
+            $words[] = self::getRandomDigits($digits);
+        if (empty($separator))
+            $separator = self::getRandomSeparator();
 
-    /**
-     * Static function generates transliterated Russian phrase password
-     *
-     * Example "kater nekiy zabrat dazhe"
-     *
-     * @param  integer $lenght    password length (number of words). Default - 4
-     * @param  string  $separator word separator. Default ' ' (space)
-     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
-     *
-     * @return string  generated password
-     */
-    public static function generateRuTranslit($lenght = 4, $separator = ' ', $uppercase = 0)
-    {
-        return self::generate(new WordList\RuTranslit(), $lenght, $separator, $uppercase);
+        return join($separator, $words);
     }
 
     /**
@@ -122,14 +173,15 @@ class Generator
      * Example "limit bend realm square"
      *
      * @param  integer $lenght    password length (number of words). Default - 4
-     * @param  string  $separator word separator. Default ' ' (space)
      * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     * @param  int     $digits    number of digits to be added at the end
+     * @param  string  $separator word separator. Default ' ' (space)
      *
      * @return string  generated password
      */
-    public static function generateEn($lenght = 4, $separator = ' ', $uppercase = 0)
+    public static function generateEn($lenght = 4, $uppercase = 0, $digits = 0, $separator = '')
     {
-        return self::generate(new WordList\En(), $lenght, $separator, $uppercase);
+        return self::generate(new WordList\En(), $lenght, $uppercase, $digits, $separator);
     }
 
 
@@ -139,13 +191,14 @@ class Generator
      * Example "laut welt ganze liter"
      *
      * @param  integer $lenght    password length (number of words). Default - 4
-     * @param  string  $separator word separator. Default ' ' (space)
      * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     * @param  int     $digits    number of digits to be added at the end
+     * @param  string  $separator word separator. Default ' ' (space)
      *
      * @return string  generated password
      */
-    public static function generateDe($lenght = 4, $separator = ' ', $uppercase = 0)
+    public static function generateDe($lenght = 4, $uppercase = 0, $digits = 0, $separator = '')
     {
-        return self::generate(new WordList\De(), $lenght, $separator, $uppercase);
+        return self::generate(new WordList\De(), $lenght, $uppercase, $digits, $separator);
     }
 }
