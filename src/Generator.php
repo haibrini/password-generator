@@ -72,9 +72,11 @@ class Generator
      *                           $wordLists array of word lists or word list
      * @param  integer $lenght    password length in words. Default - 4
      * @param  string  $separator word separator. Default - ' '(space)
+     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     *
      * @return string  generated password
      */
-    public static function generate($wordLists, $lenght = 4, $separator = ' ')
+    public static function generate($wordLists, $lenght = 4, $separator = ' ', $uppercase = 0)
     {
         if (!is_array($wordLists)) {
             $wordLists = array($wordLists);
@@ -85,7 +87,14 @@ class Generator
         $randomArray = self::getRandomArray($lenght);
         foreach ($randomArray as $index => $random) {
             $wordList = $wordLists[$index % $wordListsLength];
-            $words[] = $wordList->get($random);
+            switch ($uppercase) {
+                case 0:
+                    $words[] = $list->get($random);break;
+                case 1:
+                    $words[] = strtoupper($list->get($random));break;
+                case 2:
+                    $words[] = ucfirst($list->get($random));break;
+            }
         }
 
         return join($separator, $words);
@@ -98,25 +107,13 @@ class Generator
      *
      * @param  integer $lenght    password length (number of words). Default - 4
      * @param  string  $separator word separator. Default ' ' (space)
+     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     *
      * @return string  generated password
      */
-    public static function generateRuTranslit($lenght = 4, $separator = ' ')
+    public static function generateRuTranslit($lenght = 4, $separator = ' ', $uppercase = 0)
     {
-        return self::generate(new WordList\RuTranslit(), $lenght, $separator);
-    }
-
-    /**
-     * Static function generates Russian phrase password.
-     *
-     * Example "тоже металл пора подача"
-     *
-     * @param  integer $lenght    password length (number of words). Default - 4
-     * @param  string  $separator word separator. Default ' ' (space)
-     * @return string  generated password
-     */
-    public static function generateRu($lenght = 4, $separator = ' ')
-    {
-        return self::generate(new WordList\Ru(), $lenght, $separator);
+        return self::generate(new WordList\RuTranslit(), $lenght, $separator, $uppercase);
     }
 
     /**
@@ -126,11 +123,13 @@ class Generator
      *
      * @param  integer $lenght    password length (number of words). Default - 4
      * @param  string  $separator word separator. Default ' ' (space)
+     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     *
      * @return string  generated password
      */
-    public static function generateEn($lenght = 4, $separator = ' ')
+    public static function generateEn($lenght = 4, $separator = ' ', $uppercase = 0)
     {
-        return self::generate(new WordList\En(), $lenght, $separator);
+        return self::generate(new WordList\En(), $lenght, $separator, $uppercase);
     }
 
 
@@ -141,10 +140,12 @@ class Generator
      *
      * @param  integer $lenght    password length (number of words). Default - 4
      * @param  string  $separator word separator. Default ' ' (space)
+     * @param  int     $uppercase 0=lowercase, 1=UPPERCASE, 2=Capitalize
+     *
      * @return string  generated password
      */
-    public static function generateDe($lenght = 4, $separator = ' ')
+    public static function generateDe($lenght = 4, $separator = ' ', $uppercase = 0)
     {
-        return self::generate(new WordList\De(), $lenght, $separator);
+        return self::generate(new WordList\De(), $lenght, $separator, $uppercase);
     }
 }
